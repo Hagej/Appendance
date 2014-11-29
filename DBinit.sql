@@ -1,6 +1,0 @@
-CREATE TABLE Users(
-	name	VARCHAR(50) ,
-	pass	VARCHAR(50) UNIQUE,
-	PRIMARY KEY(name)
-);
-
