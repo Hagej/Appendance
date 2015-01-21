@@ -18,7 +18,7 @@
 		echo "Trying to fetch course code $courseCode... </br></br>";
 		$urlDataID = "https://se.timeedit.net/web/chalmers/db1/public/objects.html?max=15&fr=t&partajax=t&im=f&sid=3&l=sv&search_text=" . $courseCode . "&types=182";
 		$html = file_get_html($urlDataID); //needs allow_url_fopen to be enabled in PHP-settings
-		$elem = $html->find('[id=objectbasketitemX0]',0); //finding DIV whitch contains data-id for course
+		$elem = $html->find('[id=objectbasketitemX0]',0); //finding DIV which contains data-id for course
 		$dataID = $elem->attr['data-id']; //our data-id
 
 		echo "Woho! data-id for course code " . $courseCode . " is " . $dataID;
@@ -50,9 +50,21 @@
 		echo "</br>Lets try to find our Föreläsningar <br/><br/>";
 		$schemeData = $decodedScheme['reservations'];
 
-		foreach ($schemeData as $valueArray) {
+		foreach ($schemeData as $values) {
 			echo "_____________________</br>";
-			foreach ($valueArray as $value) {
+			echo "ID: ". $values["id"]. "</br>";
+			echo "Starts: ". $values["startdate"] ." ". $values["starttime"]. "</br>";
+			echo "Ends: ". $values["enddate"] ." ". $values["endtime"]. "</br>";
+
+			$data = $values["columns"];
+			echo "Name: ". $data[0] ."</br>";
+			echo "Location: ". $data[1] ."</br>";
+			echo "Class: ". $data[2] ."</br>";
+			echo "Type: " . $data[5] ."</br>";
+
+			echo "</br></br>";
+
+			/*foreach ($valueArray as $value) {
 				echo "value: " . $value . "</br>"; // here we get Date and Times
 				foreach ($value as $v) {	//whenever value is an array it will go through
 					echo "v: " . $v . "</br>";
@@ -60,7 +72,7 @@
 						echo "------ F&ouml;relsnign!! ------ <br/>";
 					}
 				}
-			}
+			}*/
 		}
 
 		
