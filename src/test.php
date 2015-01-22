@@ -31,7 +31,7 @@
 		echo "</br>TEST 1</br></br>";
 		//this is php-code
 
-		$courseCode = "TMV206";
+		$courseCode = $submittedData;
 
 		# Trying to get data-id for the course code
 		echo "Trying to fetch course code $courseCode... </br></br>";
