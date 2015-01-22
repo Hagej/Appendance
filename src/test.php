@@ -6,10 +6,29 @@
 	</head>
 	<body>
 
+
+
+	<form method="post" action="">
+		Skriv in din kurskod:</br>
+    	<input type="text" name="something" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>" />
+    	<input type="submit" name="submit" />
+  	</form>
+
+
+
 	<?php
+		# Fetch data from text field
+
+		if(isset($_POST['submit'])) {
+			$submittedData = htmlspecialchars($_POST['something']); //htmlspecialchars to convert from html
+  			echo "Vald kurskod: $submittedData </br>";
+  		}
+
+
+
 		include_once('simple_html_dom.php'); //for html source code parsing http://simplehtmldom.sourceforge.net
 
-		echo "TEST 1</br></br>";
+		echo "</br>TEST 1</br></br>";
 		//this is php-code
 
 		$courseCode = "TMV206";
@@ -26,6 +45,7 @@
 
 		#Fetch scheme from timeedit
 		echo "</br>... now lets try to fetch scheme!</br>";
+
 
 
 		$dateToday = date("Ymd");
@@ -48,6 +68,7 @@
 
 		#All data gathered, now mining
 		echo "</br>Lets try to find our Föreläsningar <br/><br/>";
+
 		$schemeData = $decodedScheme['reservations'];
 
 		foreach ($schemeData as $values) {
@@ -56,6 +77,7 @@
 			echo "Starts: ". $values["startdate"] ." ". $values["starttime"]. "</br>";
 			echo "Ends: ". $values["enddate"] ." ". $values["endtime"]. "</br>";
 
+			
 			$data = $values["columns"];
 			echo "Name: ". $data[0] ."</br>";
 			echo "Location: ". $data[1] ."</br>";
@@ -63,6 +85,7 @@
 			echo "Type: " . $data[5] ."</br>";
 
 			echo "</br></br>";
+
 
 			/*foreach ($valueArray as $value) {
 				echo "value: " . $value . "</br>"; // here we get Date and Times
@@ -73,7 +96,11 @@
 					}
 				}
 			}*/
+
 		}
+
+
+
 
 		
 
