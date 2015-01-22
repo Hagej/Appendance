@@ -71,45 +71,38 @@
 
 		$schemeData = $decodedScheme['reservations'];
 
-		foreach ($schemeData as $values) {
-			echo "_____________________</br>";
-			echo "ID: ". $values["id"]. "</br>";
-			echo "Starts: ". $values["startdate"] ." ". $values["starttime"]. "</br>";
-			echo "Ends: ". $values["enddate"] ." ". $values["endtime"]. "</br>";
+		?>
 
-			
-			$data = $values["columns"];
-			echo "Name: ". $data[0] ."</br>";
-			echo "Location: ". $data[1] ."</br>";
-			echo "Class: ". $data[2] ."</br>";
-			echo "Type: " . $data[5] ."</br>";
+		<?php if(empty($schemeData)): ?>
+			Course  <?=$courseCode?> does not exist or does not have any bookings during the specified time period
+		<?php else: ?>
+			<?php foreach ($schemeData as $values): ?>
+				_____________________</br>
+				ID: <?=$values["id"]?></br>
+				Starts: <?=$values["startdate"]?> <?=$values["starttime"]?> </br>
+				Ends: <?=$values["enddate"]?> <?=$values["endtime"]?></br>
 
-			echo "</br></br>";
+				<?php $data = $values["columns"]?>
+				Name: <?=$data[0]?> </br>
+				Location: <?=$data[1]?> </br>
+				Class: <?=$data[2]?> </br>
+				Type: <?=$data[5]?> </br>
 
-
-			/*foreach ($valueArray as $value) {
-				echo "value: " . $value . "</br>"; // here we get Date and Times
-				foreach ($value as $v) {	//whenever value is an array it will go through
-					echo "v: " . $v . "</br>";
-					if ($v == "Föreläsning") {
-						echo "------ F&ouml;relsnign!! ------ <br/>";
-					}
-				}
-			}*/
-
-		}
+				</br></br>
+			<?php endforeach?>
+		<?php endif?>
 
 
 
 
-		
+		<?php		
 
 		echo "</br></br></br>";
 		echo $htmlScheme; //printing out all json info
 
 
-
-	?>
+		?>
+	
 
 
 	
